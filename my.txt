@@ -1,0 +1,129 @@
+
+CREATE TABLE students (
+    Student_id CHAR(8) NOT NULL,
+    Student_name NVARCHAR(8) NOT NULL,
+    Sex BIT NOT NULL,
+    Age INT NOT NULL,
+    Class_id CHAR(6) NOT NULL,
+    Department_id CHAR(6) NOT NULL,
+    Home_addr NVARCHAR(40) NOT NULL,
+    PRIMARY KEY (Student_id)
+);
+CREATE TABLE Course (
+    Course_id CHAR(10) NOT NULL,
+    Course_name VARCHAR(20),
+    Book_id CHAR(15) NOT NULL,
+    PRIMARY KEY (Course_id)
+);
+create table course1(
+    Course_id CHAR(10) NOT NULL,
+    Course_name VARCHAR(20),
+    Book_id CHAR(15) NOT NULL,
+    total_perior int not null,
+    week_prior int not null,
+    credit int not null,
+    PRIMARY KEY (Course_id)
+    
+
+);
+CREATE TABLE Student_course (
+    Course_id CHAR(10) NOT NULL,
+    Student_id VARCHAR(8) NOT NULL,
+    grade TINYINT NOT NULL,
+    credit TINYINT NOT NULL,
+    PRIMARY KEY (Course_id, Student_id)
+);
+CREATE TABLE Teacher (
+    Teacher_id CHAR(8) NOT NULL,
+    Teacher_name NVARCHAR(8) NOT NULL,
+    Department_id CHAR(6) NOT NULL,
+    Profession NVARCHAR(16),
+    Sex BIT NOT NULL,
+    Telephone NVARCHAR(15),
+    Home_address NCHAR(40),
+    Salary NUMERIC(5, 2),
+    Birth DATETIME NOT NULL,
+    Postalcode CHAR,
+    PRIMARY KEY (Teacher_id)
+);
+CREATE TABLE book (
+    Book_id CHAR(13) NOT NULL,
+    Book_name VARCHAR(30) NOT NULL,
+    Publish_company VARCHAR(50) NOT NULL,
+    Author NVARCHAR(8), 
+    Price NUMERIC(5, 2),
+    PRIMARY KEY (Book_id)
+);
+CREATE TABLE Class (
+    Class_id CHAR(6) NOT NULL,
+    Monitor VARCHAR(8),
+    PRIMARY KEY (Class_id)
+);
+CREATE TABLE Class_course (
+    Class_id CHAR(6) NOT NULL,
+    Course_id CHAR(10) NOT NULL,
+    PRIMARY KEY (Class_id, Course_id),
+    FOREIGN KEY (Class_id) REFERENCES Class (Class_id),
+    FOREIGN KEY (Course_id) REFERENCES Course (Course_id)
+);
+CREATE TABLE Class_course1 (
+    Class_id CHAR(6) NOT NULL,
+    Course_id CHAR(10) NOT NULL
+    
+);
+CREATE TABLE Department (
+    Department_id CHAR(6) NOT NULL,
+    Department_name NVARCHAR(20) NOT NULL
+);
+INSERT INTO students (Student_id, Student_name, Sex, Age, Class_id, Department_id, Home_addr)
+VALUES ('1001', '张三', 1, 20, 'C001', 'D001', '北京市海淀区');
+ALTER TABLE students ADD COLUMN  年龄 INT;
+ALTER TABLE students MODIFY 年龄  SMALLINT;
+ALTER TABLE students DROP COLUMN 年龄;
+/*
+dadasdas
+*/
+create table students1(
+    course_id char(12) NOT NULL,
+    student_id char(12) NOT NULL,
+    grade int NOT NULL,
+    credit char(10)NOT NULL
+);
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940201','张虹',1,19,'g99402','Dep_01','南京市鼓楼区古平岗3');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940202','林红',0,19,'g99402','Dep_02','扬州市五亭街41号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940203','曹雨',1,20,'g99402','Dep_03','南京玄武区林荫大道4');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940204','瑞华',1,19,'g99402','Dep_01','江苏仪征市青年路6');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940205','李丽',0,18,'g99402','Dep_04','江苏仪征市青年东路7');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940206','林海国',1,19,'g99402','Dep_04','北京市中关村太平北路');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940207','李红',0,21,'g99402','Dep_04','南京虎踞北路43号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940208','赵青',1,20,'g99402','Dep_04','南京中山北路10号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940209','赵凯',1,21,'g99402','Dep_04','南京中山北路10号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940210','左群',1,19,'g99403','Dep_01','上海市龙盘路97号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940211','许小华',0,19,'g99403','Dep_02','上海市北京东路191号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940212','张雅丽',0,19,'g99403','Dep_03','南京市中山路9号');
+insert into students (student_id,student_name,sex,age,class_id,department_id,home_addr)
+values('g9940213','林红',0,20,'g99403','Dep_01','北京市海淀天平路8号');
+
+
+
+
+insert into course1(course_id,course_name,book_id,total_perior,week_prior,credit)
+values('Dep01_s001','电磁波工程','Dep01_s001_01',80,6,6);
+insert into class(class_id,monitor)values('g00401','张丽');
+insert into class_course1(class_id,course_id)values ('g99402','dep04_s001');
+insert into course1(course_id,course_name,book_id,total_perior,week_prior,credit)
+values('Dep04_s001','数据库开发技术','Dep04_s001_01',80,5,5);
+insert into department(department_id,department_name)values('Dep_01','无线电');
+select *from 
